@@ -3,6 +3,7 @@
 import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
+  // get user info from session
   const { data: session } = useSession();
 
   return (
