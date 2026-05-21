@@ -4,6 +4,7 @@ import pool from "@/lib/db";
 import bcrypt from "bcryptjs";
 
 const handler = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -12,6 +13,8 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        console.log("authorize called with:", credentials?.email);
+
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
@@ -40,6 +43,13 @@ const handler = NextAuth({
       },
     }),
   ],
+  pages: {
+    signIn: "/login",
+    error: "/login",
+  },
+  session: {
+    strategy: "jwt",
+  },
 });
 
 export { handler as GET, handler as POST };

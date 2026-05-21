@@ -30,6 +30,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newUser.rows[0], { status: 201 });
   } catch (error) {
+    console.error("Register error:", error);
     return NextResponse.json(
       { error: "Something went wrong" },
       { status: 500 },
