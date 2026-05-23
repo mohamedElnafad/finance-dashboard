@@ -10,17 +10,18 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-const data = [
-  { month: "Jan", income: 3200, expenses: 1800 },
-  { month: "Feb", income: 3800, expenses: 2100 },
-  { month: "Mar", income: 3500, expenses: 1600 },
-  { month: "Apr", income: 4200, expenses: 2400 },
-  { month: "May", income: 3900, expenses: 1900 },
-  { month: "Jun", income: 4200, expenses: 1890 },
-];
+import { useGetChartQuery } from "@/store/api/dashboardApi";
 
 export default function RevenueChart() {
+  const { data, isLoading } = useGetChartQuery();
+
+  if (isLoading)
+    return (
+      <div className="bg-white rounded-2xl p-6 shadow-sm h-[350px] flex items-center justify-center">
+        <p className="text-sm text-gray-400">Loading...</p>
+      </div>
+    );
+
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm">
       <h2 className="text-sm font-medium text-gray-500 mb-6">
