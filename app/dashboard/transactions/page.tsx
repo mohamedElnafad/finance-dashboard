@@ -12,7 +12,7 @@ export default function TransactionsPage() {
 
   const debouncedSearch = useDebounce(search, 500);
 
-  const { data, isLoading } = useGetTransactionsQuery({
+  const { data, isLoading, isError } = useGetTransactionsQuery({
     search: debouncedSearch,
     type,
     page,
@@ -72,6 +72,12 @@ export default function TransactionsPage() {
               <tr>
                 <td colSpan={4} className="text-center py-10 text-gray-400">
                   Loading...
+                </td>
+              </tr>
+            ) : isError ? (
+              <tr>
+                <td colSpan={4} className="text-center py-10 text-red-400">
+                  Something went wrong. Please try again.
                 </td>
               </tr>
             ) : (
