@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import pool from "@/lib/db";
+import { authOptions } from "@/lib/authOptions";
 
 const ITEMS_PER_PAGE = 7;
 
