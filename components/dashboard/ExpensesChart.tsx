@@ -15,9 +15,6 @@ const COLORS = ["#2563EB", "#7C3AED", "#EF4444", "#F59E0B", "#10B981"];
 export default function ExpensesChart() {
   const { data, isLoading } = useGetCategoriesQuery();
 
-  // Add debug logging
-  console.log("Categories data:", data);
-
   if (isLoading)
     return (
       <div className="bg-white rounded-2xl p-6 shadow-sm h-[350px] flex items-center justify-center">
